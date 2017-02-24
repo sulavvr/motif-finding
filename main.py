@@ -1,18 +1,40 @@
-string = 'abxabcabcaby' # - i
-pattern = 'abcaby' # - j
+################################################
+# Advanced Analysis of Algorithms
+# Project: Motif finding using KMP Algorithm
+# Members:
+# 	Hitesh Arora (50489713),
+# 	Sulav Regmi (50211843)
+# Dr. Huang
+# ##############################################
 
-def check(lookup_arr):
+string_o = 'atgaccgggatactgatagaagaaaggttgggggcgtacacattagataaacgtatgaagtacgttagactcggcgccgccgacccctattttttgagcagatttagtgacctggaaaaaaaatttgagtacaaaacttttccgaatacaataaaacggcgggatgagtatccctgggatgacttaaaataatggagtggtgctctcccgatttttgaatatgtaggatcattcgccagggtccga' # - i
+
+
+string_t = 'gctgagaattggatgcaaaaaaagggattgtccacgcaatcgcgaaccaacgcggacccaaaggcaagaccgataaaggagatcccttttgcggtaatgtgccgggaggctggttacgtagggaagccctaacggacttaatataataaaggaagggcttataggtcaatcatgttcttgtgaatggatttaacaataagggctgggaccgcttggcgcacccaaattcagtgtgggcgagcgcaa'
+string_th = 'cggttttggcccttgttagaggcccccgtataaacaaggagggccaattatgagagagctaatctatcgcgtgcgtgttcataacttgagttaaaaaatagggagccctggggcacatacaagaggagtcttccttatcagttaatgctgtatgacactatgtattggcccattggctaaaagcccaacttgacaaatggaagatagaatccttgcatactaaaaaggagcggaccgaaagggaag'
+
+
+def check(lookup_arr, result, pattern, string):
 	i, j = 0, 0
-	while i < len(lookup_arr):
-		if string[i] == pattern[j]:
-			i += 1
-			j += 1
+	while j < len(lookup_arr):
+		if i < len(string):
+			if string[i] == pattern[j]:
+				result += string[i]
+				i += 1
+				j += 1
+			else:
+				if j != 0:
+					j -= 1
+					j = lookup_arr[j]
+					continue
+				else:
+					i += 1
+					continue
 		else:
-			j -= 1
-			j = lookup_arr[j]
-			continue
+			break
+	return result[-len(pattern):]# == pattern
 
-def setupLookup():
+def setupLookup(pattern):
 	i, j = 1, 0
 	arr = [0] * len(pattern)
 
@@ -32,7 +54,31 @@ def setupLookup():
 				continue
 	return arr
 
-arr = setupLookup()
-check(arr)
-print(arr)
+idx = 0
+while idx < len(string_o) - 15:
+	ptrn = string_o[idx:(idx+15)]
+
+	res = ''
+	arr = setupLookup(ptrn)
+
+	matched_t = check(arr, res, ptrn, string_t)
+	matched_th = check(arr, res, ptrn, string_th)
+
+	if matched_t == ptrn and matched_th == ptrn:
+		print(ptrn, ' matched in both sequence.')
+		break
+	else:
+		idx += 1
+		continue
+
+# print(idx)
+
+
+
+
+# res = ''
+# arr = setupLookup()
+# matched = check(arr, res)
+
+# print(matched)
 
