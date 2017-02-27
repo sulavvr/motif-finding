@@ -11,12 +11,11 @@
 # ##############################################
 
 
-
 def readFromFile():
-
     """
-    Read sequences from sequence.fasta file and store each sequence in a list by skipping every other line
-     :return: list of sequences
+    Read sequences from sequence.fasta file and store each sequence in a list
+    by skipping every other line
+    :return: list of sequences
     """
     sequences = []
     line_idx = 0
@@ -35,7 +34,8 @@ def readFromFile():
 def check(lookup_arr, result, pattern, string):
 
     """
-    Compares provided pattern against the string passed, part of the KMP algorithm
+    Compares provided pattern against the string passed, part of the KMP
+    algorithm
     :param lookup_arr: list of
     :param result: empty string for returning
     :param pattern: pattern to be matched against the sequence
