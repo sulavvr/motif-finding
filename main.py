@@ -92,27 +92,33 @@ def setupLookup(pattern):
 PATTERN_LENGTH = 15
 
 # storing list of all the sequences return by the function
-sequences = readFromFile()
+# sequences = readFromFile()
+
 
 # looping through the sequence taking string of length same as pattern length
 # and then using KMP to find match in all sequences
+#
+pattern = 'gaccccta'
+sequence = 'gccgccgacccctatt'
 
-idx = 0
-while idx < len(sequences[0]) - PATTERN_LENGTH:
-    ptrn = sequences[0][idx:(idx + PATTERN_LENGTH)]
+arr = setupLookup(pattern)
 
-    res = ''
-    arr = setupLookup(ptrn)
+# idx = 0
+# while idx < len(sequences[0]) - PATTERN_LENGTH:
+#     ptrn = sequences[0][idx:(idx + PATTERN_LENGTH)]
 
-    matched = []
-    for sequence in range(1, len(sequences)):
-        matched.append(check(arr, res, ptrn, sequences[sequence]))
+#     res = ''
+#     arr = setupLookup(ptrn)
 
-    if (all(x == ptrn for x in matched)):
-        print(ptrn, ' matched in all sequences.')
-        break
-    else:
-        idx += 1
-        if idx == len(sequences[0]) - 16:
-            print('Match not found in all sequences!')
-        continue
+#     matched = []
+#     for sequence in range(1, len(sequences)):
+#         matched.append(check(arr, res, ptrn, sequences[sequence]))
+
+#     if (all(x == ptrn for x in matched)):
+#         print(ptrn, ' matched in all sequences.')
+#         break
+#     else:
+#         idx += 1
+#         if idx == len(sequences[0]) - 16:
+#             print('Match not found in all sequences!')
+#         continue
