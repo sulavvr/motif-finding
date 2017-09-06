@@ -2,8 +2,8 @@
 # Advanced Analysis of Algorithms
 # Project: Motif finding using KMP Algorithm
 # Members:
-#   Hitesh Arora (50489713),
-#   Sulav Regmi (50211843)
+#   Hitesh Arora,
+#   Sulav Regmi
 # Dr. Huang
 #
 # Using KMP algorithm or Knuth-Morris-Pratt string searching algorithm
